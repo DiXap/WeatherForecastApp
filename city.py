@@ -10,17 +10,23 @@ class City:
         self.name = name
 
     def __str__(self) -> str:
-        info = self.name + ': ' + self.dt
+        info = self.name + ': ' + str(self.dt)
         return info 
 
     def __repr__(self) -> str:
-        return '{' + "'" + self.name + "' :" + str(self.dt) + '}'
+        return '{' + "'" + self.name + "': " + str(self.dt) + '}'
 
 
     def set_dt(self, dt):
         if dt == None:
             self.set_dt(0)
         self.dt = dt
+
+    def set_name(self, name: str):
+        if name == None:
+            self.name = 'Tokyo'
+        self.name = name
+
 
     @property
     def compare(self):

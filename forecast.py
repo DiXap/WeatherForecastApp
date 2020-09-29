@@ -1,7 +1,7 @@
 import json, os, requests
 from city import City
 
-api = 'API KEY goes here'
+api = '1192a5270a138f03ee3e5add35415f3e'
 states = {}
 #data = {}
 cities = []
@@ -10,47 +10,52 @@ def update(cities):
     
     pass
 
-def consult(city, state, cities):
+def consult(city: object, state, cities, states):
     """
     docstring
     """
-    ct = City(city)
-      
+    #ct = City(city)
     
-    ow_url = 'https://api.openweathermap.org/data/2.5/weather?q={},{}&appid={}&units=metric'.format(ct.name, state, api)
     
-    #try:
-    response = requests.get(ow_url)    
-    #except requests.exceptions.RequestException:
-    #    return
+    ow_url = 'https://api.openweathermap.org/data/2.5/weather?q={},{}&appid={}&units=metric'.format(city.name, state, api)
+    
+    try:
+        response = requests.get(ow_url)    
+    except requests.exceptions.RequestException:
+        return
 
     data = json.loads(response.text)
-    with open('./Data/' + city + '.json', 'w', encoding='utf-8') as outfile:
+    with open('./Data/' + city.name + '.json', 'w', encoding='utf-8') as outfile:
         json.dump(data, outfile, ensure_ascii=False, indent=4)
 
-    #try:
-    ct.set_dt(data['dt'])
-    #except:
-    #    pass
+    try:
+        city.set_dt(data['dt'])
+    except:
+        pass
 
-    cities.append(ct)
+    cities.append(city)
     cities.sort()
     #cities.update({ct.name : ct.dt})
-    #states[state] = cities;
-    return cities;
+    states[state] = cities;
+    return data;
     
 
-print(consult('Tokyo', 'JP', cities))
-consult('Sapporo', 'JP', cities)
-consult('Okinawa', 'JP', cities)
-#consult('Cancun', 'MX')
+tokyo = City('Tokyo')
+print(consult(tokyo, 'JP', cities, states))
+consult(City('Sapporo'), 'JP', cities, states)
+consult(City('Okinawa'), 'JP', cities, states)
+
+aux = []
+consult(City('Cancun'), 'MX', aux, states)
 
 #print(d)
 
-#c = City('Tokyo')
+c = City('Tokyo')
 #c1 = City('Mom')
 #d = [c, c1]
-print(cities)
+
+if tokyo in states['JP']:
+    print(tokyo)
 
 print(
     states
