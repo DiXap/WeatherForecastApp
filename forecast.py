@@ -1,7 +1,7 @@
 import json, os, requests
 from city import City
 
-api = '1192a5270a138f03ee3e5add35415f3e'
+api = 'API KEY goes here'
 states = {}
 #data = {}
 cities = []
