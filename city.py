@@ -1,3 +1,5 @@
+from json.encoder import JSONEncoder
+import json
 from os import name, sendfile
 
 
@@ -40,5 +42,14 @@ class City:
            return self.name == other.name
        return False
 
-    
+
+#class CityEncoder(JSONEncoder):
+#    """
+#    docstring
+#    """
+#    def default(self, object):
+#        if isinstance(object, City):
+#            return object.__dict__
+#        else:
+#            return json.JSONEncoder.default(self, object)
     

@@ -1,4 +1,6 @@
-import json, os, requests
+import json, os, requests, jsonpickle
+from os import name
+from state import State
 from city import City
 
 api = '1192a5270a138f03ee3e5add35415f3e'
@@ -6,21 +8,25 @@ states = {}
 #data = {}
 cities = []
 
-def update(cities):
-    
-    pass
 
-def consult(city: object, state, cities, states):
+def access(city: object):
+    data = {}
+    with open('./Data/' + city.name + '.json') as target:
+        data = json.load(target)
+    return data
+
+
+def consult(city: object, state: object, states):
     """
     docstring
     """
-    #ct = City(city)
-    
-    
     ow_url = 'https://api.openweathermap.org/data/2.5/weather?q={},{}&appid={}&units=metric'.format(city.name, state, api)
     
+    if city in state.cities:
+        return access(city)
+    
     try:
-        response = requests.get(ow_url)    
+        response = requests.get(ow_url)   
     except requests.exceptions.RequestException:
         return
 
@@ -33,33 +39,43 @@ def consult(city: object, state, cities, states):
     except:
         pass
 
-    cities.append(city)
-    cities.sort()
+    state.cities.append(city)
+    state.cities.sort()
     #cities.update({ct.name : ct.dt})
-    states[state] = cities;
+    #jsonstate = StateEncoder().encode(state)
+
+    states[state] = state.cities;
+    
     return data;
     
 
 tokyo = City('Tokyo')
-print(consult(tokyo, 'JP', cities, states))
-consult(City('Sapporo'), 'JP', cities, states)
-consult(City('Okinawa'), 'JP', cities, states)
+jp = State('JP')
 
-aux = []
-consult(City('Cancun'), 'MX', aux, states)
 
-#print(d)
+print(consult(tokyo, jp, states))
+print(consult(tokyo, jp, states))
+consult(City('Sapporo'), jp, states)
+consult(City('Okinawa'), jp, states)
+
+consult(City('Cancun'), State('MX'), states)
 
 c = City('Tokyo')
 #c1 = City('Mom')
 #d = [c, c1]
 
-if tokyo in states['JP']:
+if tokyo in states[jp]:
     print(tokyo)
 
 print(
     states
 )
 
+js = jsonpickle.encode(states)
 
-print()
+with open('./Data/Wolrd.json', 'w', encoding='utf-8') as outfile:
+    json.dump(js, outfile, ensure_ascii=False)
+
+
+
+print(js)
