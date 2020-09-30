@@ -2,12 +2,13 @@ import json, os, requests, jsonpickle
 from os import name
 from state import State
 from city import City
+from states import States
 
-api = 'APIKEY'
-states = {}
+api = 'API'
+#states = {}
 #data = {}
 cities = []
-
+states = States()
 
 def access(city: object):
     data = {}
@@ -44,7 +45,8 @@ def consult(city: object, state: object, states):
     #cities.update({ct.name : ct.dt})
     #jsonstate = StateEncoder().encode(state)
 
-    states[state] = state.cities;
+    #states[state] = state.cities;
+    states.add(state)
     
     return data;
     
@@ -54,7 +56,7 @@ jp = State('JP')
 
 
 print(consult(tokyo, jp, states))
-print(consult(tokyo, jp, states))
+consult(tokyo, jp, states)
 consult(City('Sapporo'), jp, states)
 consult(City('Okinawa'), jp, states)
 
@@ -64,17 +66,18 @@ c = City('Tokyo')
 #c1 = City('Mom')
 #d = [c, c1]
 
-if tokyo in states[jp]:
+if jp in states:
     print(tokyo)
 
 print(
     states
 )
 
-js = jsonpickle.encode(states)
+jsonpickle.set_encoder_options('simplejson', sort_keys = True)
+js = jsonpickle.encode(states, unpicklable=False)
 
-with open('./Data/Wolrd.json', 'w', encoding='utf-8') as outfile:
-    json.dump(js, outfile, ensure_ascii=False)
+with open('./Data/World.json', 'w', encoding='utf-8') as outfile:
+    json.dump(js, outfile)
 
 
 

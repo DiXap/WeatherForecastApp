@@ -2,6 +2,8 @@ from json.encoder import JSONEncoder
 import json
 from os import name, sendfile
 
+import jsonpickle
+
 
 class City:
     """
@@ -42,6 +44,16 @@ class City:
            return self.name == other.name
        return False
 
+
+class CityHandler(jsonpickle.handlers.BaseHandler):
+    """
+    docstring
+    """
+    def flatten(self, obj, data):
+        """
+        docstring
+        """
+        return [self.context.flatten(x,reset=False) for x in obj.contents]
 
 #class CityEncoder(JSONEncoder):
 #    """

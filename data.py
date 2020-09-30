@@ -1,6 +1,8 @@
+from operator import eq
 import jsonpickle, json
 from city import City
 from state import State
+from states import States
 from forecast import access
 
 
@@ -12,16 +14,32 @@ def get_data(city: object):
 
 
 def get_world():
-    f = open('./Data/Wolrd.json')
-    json_str = f.read()
-    obj = jsonpickle.decode(json_str)
-    return obj
+    #f = open('./Data/World.json')
+    #json_str = f.read()
+    #obj = jsonpickle.decode(json_str)
+    #st = States()
+    #st.set_dict(obj)
+    #return st
+    data = {}
+    
+    with open('./Data/World.json') as target:
+        s = target.read()
+        jp = jsonpickle.decode(s)
+        data = jsonpickle.decode(jp)
 
-d = get_world()
+    st = States()
+    st.set_dict(data)
+    return st
+
+
+
 
 s = State('JP')
 
-print(d)
+if s in d:
+    print('he')
 
-print(get_data(City('Sapporo')))
+print(d.states.keys())
+
+#print(get_data(City('Sapporo')))
 

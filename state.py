@@ -12,7 +12,7 @@ class State(object):
        return info 
 
     def __repr__(self) -> str:
-        return "'" + self.name
+        return "'" + self.name + "'"
 
 
     def set_name(self, name: str):
@@ -23,6 +23,19 @@ class State(object):
 
     #def __hash__(self):
     #    return hash((self.name))
+
+    def __key(self):
+        return (self.name)
+
+    def __hash__(self) -> int:
+        return hash(self.__key())
+    
+    def __eq__(self, other) -> bool:
+        if isinstance(other, State):
+            return self.__key() == other.__key()
+        return NotImplemented
+        
+
 
 #class StateEncoder(JSONEncoder):
 #    """
