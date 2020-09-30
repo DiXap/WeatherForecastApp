@@ -3,7 +3,7 @@ from os import name
 from state import State
 from city import City
 
-api = '1192a5270a138f03ee3e5add35415f3e'
+api = 'APIKEY'
 states = {}
 #data = {}
 cities = []
