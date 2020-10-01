@@ -19,7 +19,7 @@ from data import create_world, get_world
 from state import State
 from city import City
 
-api = '1192a5270a138f03ee3e5add35415f3e'
+api = 'YOUR_APIKEY_GOES_HERE'
 states = get_world()
 
 
