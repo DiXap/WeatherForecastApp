@@ -1,7 +1,7 @@
 # WeatherScratch
 Project scratch from a WeatherApp
 
-## You'll need
+### You'll need
   - Python 3+ (LTS version)
   - pip installer:
     - jsonpickle
@@ -16,4 +16,11 @@ Project scratch from a WeatherApp
     ```
     api = 'API_KEY'
     ```
-    >`forecast.py` 
+    >from `forecast.py` 
+
+
+## Importante ❗
+Crea un directorio dentro de la carpeta del proyecto:
+  - `Data`
+
+Es importante porque aquí es donde se supone que se guardan los archivos de la base de datos
