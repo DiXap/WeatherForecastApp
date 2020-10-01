@@ -1,13 +1,13 @@
-from jsonpickle.util import itemgetter
 from state import State
 from builtins import object
 
 class States(object):
-    """
-    docstring
+    """ Inicialmente una clase para almacenar los objetos State
+    >Status: Deprecated
     """
     def __init__(self):
         self.states = {}
+        
         
     def __iter__(self):
         return iter(self.states)
@@ -16,10 +16,6 @@ class States(object):
         self.states = dict
 
     def add(self, state: State):
-        """
-        docstring
-        """
-        #self.states[state] = state.cities
         self.__setitem__(state, state.cities)
 
     def __setitem__(self, item, value):

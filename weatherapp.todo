@@ -1,0 +1,13 @@
+General:
+    ☐ Cargar los datos de entrada
+    ✔ Consumir API OpenWeather @done(20-09-28 20:08)
+    ☐ Validar la entrada antes de consumir el API
+    ☐ Almacenar la información:
+        ✔ Usar un diccionario para saber que ciudades ya fueron consultadas @done(20-09-30 20:13)
+        ✔ Almacenar la informacion obtenida para cada ciudad @done(20-09-28 20:28)
+
+    ☐ Ver si podemos abstraer más cosas
+        ☐ Métodos auxiliares
+
+    ☐ Debuguear
+    ☐ Trabajo escrito

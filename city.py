@@ -1,16 +1,21 @@
 from json.encoder import JSONEncoder
 import json
-from os import name, sendfile
-
 import jsonpickle
 
 
 class City:
+    """#### City
+    Clase para adecuar la infromacion recibida segun los requerimientos para consumir la API
     """
-    docstring
-    """
-    def __init__(self, name: str, dt=0) -> None:
-        self.dt = dt
+    def __init__(self, name: str, dt=0): 
+        #TODO Entrada 
+        # Modificar los parametros antes de asignarlos al objeto: pasar name a lower case
+        """    Constructor
+        - Args:
+          - name (str): Nombre de la ciudad
+          - dt (int): Hora en que se hizo la consulta a la API (en UTC)
+        """
+        self.dt = dt 
         self.name = name
 
     def __str__(self) -> str:
@@ -18,8 +23,7 @@ class City:
         return info 
 
     def __repr__(self) -> str:
-        return '{' + "'" + self.name + "': " + str(self.dt) + '}'
-
+        return self.name
 
     def set_dt(self, dt):
         if dt == None:
@@ -41,27 +45,22 @@ class City:
     
     def __eq__(self, other: object) -> bool:
        if (isinstance(other, City)):
-           return self.name == other.name
+           return self.__key() == other.__key()
        return False
 
+    def __key(self):
+        return (self.name)
 
-class CityHandler(jsonpickle.handlers.BaseHandler):
+    def __hash__(self) -> int:
+        return hash(self.__key())
+
+
+class CityHandler(jsonpickle.handlers.BaseHandler): #TODO Ver si el codificadore aun nos sirve (tentativamente deprecar)
     """
-    docstring
+    Auxiliar para codificar un objeto City
     """
     def flatten(self, obj, data):
         """
         docstring
         """
         return [self.context.flatten(x,reset=False) for x in obj.contents]
-
-#class CityEncoder(JSONEncoder):
-#    """
-#    docstring
-#    """
-#    def default(self, object):
-#        if isinstance(object, City):
-#            return object.__dict__
-#        else:
-#            return json.JSONEncoder.default(self, object)
-    

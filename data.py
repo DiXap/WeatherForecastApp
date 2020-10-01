@@ -1,45 +1,38 @@
-from operator import eq
-import jsonpickle, json
-from city import City
-from state import State
-from states import States
-from forecast import access
+import json
 
 
 def get_data(city: object):
+    """
+    Obtenemos la informacion de un serializable JSON
+    """
     data = {}
+    
     with open('./Data/' + city.name + '.json') as target:
         data = json.load(target)
     return data
 
 
-def get_world():
-    #f = open('./Data/World.json')
-    #json_str = f.read()
-    #obj = jsonpickle.decode(json_str)
-    #st = States()
-    #st.set_dict(obj)
-    #return st
+def get_world() -> dict:
+    """ Obtiene informacion del contenido de la base de datos
+    """
     data = {}
-    
-    with open('./Data/World.json') as target:
-        s = target.read()
-        jp = jsonpickle.decode(s)
-        data = jsonpickle.decode(jp)
-
-    st = States()
-    st.set_dict(data)
-    return st
+    try:
+        with open('./Data/World.json', 'r', encoding='utf-8') as target:
+            data = json.load(target)
+    except:
+        create_world(data)
+        get_world()
+    return data
 
 
+def save_world(): #TODO Deprecar
+    world = get_world()
+    with open('./Data/World.json', 'w', encoding='utf-8') as outfile:
+        json.dump(world, outfile, indent=2)
 
 
-s = State('JP')
-
-if s in d:
-    print('he')
-
-print(d.states.keys())
-
-#print(get_data(City('Sapporo')))
-
+def create_world(world: dict): # TODO Testeo. Ver si no rompe codigo
+    """ Sobre-escribe el Diccionario donde se almacenan los State
+    """
+    with open('./Data/World.json', 'w', encoding='utf-8') as outfile:
+        json.dump(world, outfile, indent=2)
