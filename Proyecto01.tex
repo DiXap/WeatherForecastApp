@@ -1,0 +1,56 @@
+\documentclass[]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\title{Proyecto Número 1}
+\author{Alejandro Maldonado y Diego Padilla}
+\date{\today}
+\begin{document}
+\maketitle{}
+\begin{center}
+\includegraphics[scale=.30]{im1.jpg}
+\end{center}
+\section {Definición del problema}
+\begin{flushleft}
+\includegraphics[width=10cm]{im3.png}
+\end{flushleft}
+Se requiere un programa en el que dados cierta cantidad de boletos de avión\emph{(Los cuales son facilitados en documentos CSV con algunos errores)} se procese la información de destino, origen, ubicación exacta y tiempo. Usando esta información se debe porporcionar el clima exacto del día en la ciudad o país de origen y de destino.\\ Como se menciono previamente se deben manejar los errores existentes en los documentos CSV de manera que la información sea congruente y exacta, para esto se requieren pruebas unitarias.
+\newpage
+\section {Análisis del problema}
+\begin{flushleft}
+\includegraphics[width=10cm]{im2.png}
+\end{flushleft}
+Se descomponen los procesos de la siguiente forma:
+\begin{enumerate}
+\item Acceso a los archivos CSV
+\item Procesar los datos, i.e guardarlos, asignarlos
+\item Obtener los accesos y recursos de la API
+\item Hacer requests del clima con los datos procesados a la API
+\item Recibir los datos del clima 
+\item Desplegar los datos del clima\\
+\begin{comment}
+O al menos así es como vemos que se debe llevar a cabo el proceso jej
+\end{comment}
+\\Consideramos que por estos subprocesos debemos llevar a cabo el programa. En cuanto al manejo de los errores procesaremos previamente los datos de los CSV y las pruebas unitarias se harán de cada modulo \emph{(Manejo de los archivos, Manejo de los datos y requests)}
+\end{enumerate} 
+\section{Selección de la mejor alternativa}
+\begin{flushleft}
+\includegraphics[width=10cm,height=2cm]{im4.jpg}
+\end{flushleft}
+Tomamos claramente varias opciones en cuenta y el objetivo era hacer el programa más facil de realizar, entender y manejar. Primero se usaron diferentes librerias para el manejo de datos y requests como es Pandas, Jpickle y Request. Con Pandas se mejorara al cien el acceso y obtención de datos de los archivos CSV y con Jpickle y Request manejaremos las peticiones de openWeather. \newpage
+\section {Diagrama de flujo}
+\begin{center}
+\includegraphics[scale=.70]{im6.png}
+\end{center}
+\begin{flushleft}
+\includegraphics[scale=.40]{im7.png}
+\end{flushleft}
+\begin{flushleft}
+\includegraphics[scale=.40]{im8.png}
+\end{flushleft}
+\section {Futuro}
+\begin{flushleft}
+\includegraphics[width=10cm,height=2.5cm]{im5.jpg}
+\end{flushleft}
+Hay algunas cosas que podemos mejorar a futuro como la implementación de una interfaz interactiva que haga el uso del programa más sencillo, una mejor obtención de datos en los cuales se pueda asegurar la fidelidad de estos, además de poder manejar los errores de los CSV que nos deje asegurar de manera rápida la seguridad de estos.
+\end{document}
