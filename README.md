@@ -1,4 +1,4 @@
-# WeatherApp
+# Weather Forecast App
 [![Generic badge](https://img.shields.io/badge/version-3.09.10-<COLOR>.svg)](https://shields.io/)
 [![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![Generic badge](https://img.shields.io/badge/contributors-2-blue)](https://shields.io/)  
@@ -12,14 +12,15 @@
   * [Installation](#installation)
 * [Usage](#usage)
 * [Contributing](#contributing)
-* [Contact](#Acknowledgements)
+* [Contact](#contact)
+* [Acknowledgements](#Acknowledgements)
 
 
 
 
 # About the Project
 Basically this project retrieves weather forecast data from an [OpenWeather](https://openweathermap.org/) API request. For now it only reads data from. csv files containing IATA codes or cities and display its data on a simple-human-comprehensible terminal app  
-We're currently working on an GUI so you can search places and, overall, have a prettier data visualization.
+Currently working on an GUI so you can search places and, overall, have a prettier data visualization.
 
 # Getting Started
 Since this app is all made with `Python` you're going to need some python-libraries and utilities listed below.
@@ -46,7 +47,7 @@ python --version
 1. Get a free `OpenWeather` API Key at https://openweathermap.org/appid
 2. Clone the repo
 ```
-git clone https://
+git clone https://github.com/DiXap/WeatherForecastApp.git
 ```
 3. Verify or install Python packages
   For all the packages listed bwlow, run the following command where `<pkg>` is the name of the package.
@@ -80,17 +81,17 @@ It should output something like:
 If you want to contribute to this project please read the following steps. Any feedback or contrributions are greatly appreciated.
   1. Fork the project
   2. Create your branch  
-    ```git checkout -b features/MyFeature```  
+    ```git checkout -b ideas/MyFeature```  
 
   3. Commint the changes  
     ```git commit -m "Some awesome ideas" ```  
   4. Push  
-    ``` git push origin features/MyFeature```  
+    ``` git push origin ideas/MyFeature```  
   5. Open a pull request   
 
 ## Open issues
 You can open an issue anytime you want.  
-Refer to the open issues for a list of known issues.
+Refer to the [open issues](https://github.com/DiXap/WeatherForecastApp/issues) for a list of known issues.
 
 # Contact
 Diego J. Padilla  
@@ -111,4 +112,7 @@ Alejandro Maldonado
 
 ---
 ![forthebadge biult-with-love](https://forthebadge.com/images/badges/built-with-love.svg) 
-[![forthebadge powered-by-electricity](https://forthebadge.com/images/badges/powered-by-electricity.svg)](http://ForTheBadge.com)
+[![forthebadge powered-by-electricity](https://forthebadge.com/images/badges/powered-by-electricity.svg)](http://ForTheBadge.com)  
+
+---
+[Go up](#weather-forecast-app)
