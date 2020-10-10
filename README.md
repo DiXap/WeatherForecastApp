@@ -11,6 +11,7 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
+  * [Tests](#tests)
 * [Contributing](#contributing)
 * [Contact](#contact)
 * [Acknowledgements](#Acknowledgements)
@@ -19,7 +20,7 @@
 
 
 # About the Project
-Basically this project retrieves weather forecast data from an [OpenWeather](https://openweathermap.org/) API request. For now it only reads data from. csv files containing IATA codes or cities and display its data on a simple-human-comprehensible terminal app  
+Basically this project retrieves weather forecast data from an [OpenWeather](https://openweathermap.org/) API request. For now it only reads data from `.csv` files containing IATA codes or cities and display its weather forecast information on a simple-human-comprehensible terminal app  
 Currently working on an GUI so you can search places and, overall, have a prettier data visualization.
 
 # Getting Started
@@ -31,7 +32,7 @@ Since this app is all made with `Python` you're going to need some python-librar
 ```
 python --version
 ```
-> `Python 3.8+` is adviced  
+> `Python 3.8+` is recommended 
 
   Note that in some linux distros you'll need to run it as:  
   ```
@@ -56,6 +57,7 @@ git clone https://github.com/DiXap/WeatherForecastApp.git
   ```
   * `requests`
   * `unidecode`
+  * `pandas`
 
 4. Enter your API Key in `main.py`
 ```
@@ -64,21 +66,45 @@ API = 'ENTER_YOUR_API_KEY'
 
 # Usage
 As mentioned before, the app only reads csv files, although you can modify the functions in `main.py` in order to request for a specific location forecast.  
-Once you're ready, wheter you modify something or not, go to your terminal and in the main directory of the project run the following:
+Don't delete `Data`/ `resources` directories or its child directories for they're used in the main excecutoin of the app.
+Once you're ready, whether you modify something or not, go to your terminal and in the main directory of the project run the following:
 ```
 python main.py
 ```
 > `python3` in some distros
 
 It should output something like:  
-![alt text](./resources/Places.png "Looking for a place")  
+![Cities](./resources/Places.png "Looking for a place")  
 > If you searched for a place  
 
-![alt text](./resources/IATA.png "IATA codes also supported!")  
+![Airports](./resources/IATA.png "IATA codes also supported!")  
 > If you searched an IATA code
 
+Since `OpeWeather` only admits limitted API calls per minute, the main program is set to make under 60 requests so it doesn't get yourself in trouble.  
+If you want to remove this limit go to `main.py` and change the following:
+```
+  future = asyncio.ensure_future(get_data_iata(d1_list, states))
+
+  future = asyncio.ensure_future(get_data_place(d2_list, states))
+```
+By doing this the program will fetch data for all the places contained in the `.csv` files.  
+Alternatively, you can fiddle around with the list slices:
+```
+  d1_coords = d1_list[:20:-1]
+
+  call = d2_list[200:210]
+```
+
+## Tests
+In order to get the tests running you'll need to enter your API Key in `tests.py`:
+```
+API = 'ENTER_YOUR_API_KEY'
+```
+These test cases were coded to demostrate functions' error handling.
+Feel free to play around with them.
+
 # Contributing
-If you want to contribute to this project please read the following steps. Any feedback or contrributions are greatly appreciated.
+If you want to contribute to this project please read the following steps. Any feedback or contributions are greatly appreciated.
   1. Fork the project
   2. Create your branch  
     ```git checkout -b ideas/MyFeature```  
@@ -91,13 +117,12 @@ If you want to contribute to this project please read the following steps. Any f
 
 ## Open issues
 You can open an issue anytime you want.  
-Refer to the [open issues](https://github.com/DiXap/WeatherForecastApp/issues) for a list of known issues.
+Refer to the section [open issues](https://github.com/DiXap/WeatherForecastApp/issues) for a list of known issues.
 
 # Contact
 Diego J. Padilla  
 [<img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>](https://github.com/DiXap)
-[<img src="https://img.shields.io/badge/discord-%237289DA.svg?&style=for-the-badge&logo=discord&logoColor=white"/>](Dixap#5792)
-[<img src="https://img.shields.io/badge/gmail-D14836?&style=for-the-badge&logo=gmail&logoColor=white"/>](https://mail.google.com/mail/?view=cm&source=mailto&to=dpadlara@gmail.com)
+[<img src="https://img.shields.io/badge/gmail-D14836?&style=for-the-badge&logo=gmail&logoColor=white"/>](https://mail.google.com/mail/?view=cm&source=mailto&to=dpadlara@gmail.com)<!---![Dixap#5792](https://img.shields.io/badge/discord-%237289DA.svg?&style=for-the-badge&logo=discord&logoColor=white) --> <img src="https://img.shields.io/badge/discord-Dixap@5792-181717?style=for-the-badge&logo=discord" />
 
 Alejandro Maldonado  
 [<img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>](https://github.com/RealMaldov)
@@ -105,9 +130,11 @@ Alejandro Maldonado
 
 
 # Acknowledgements
+* [airport-codes](https://github.com/ram-nadella/airport-codes)
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 * [Some cool badges for your README](https://github.com/Naereen/badges)
 * [ForTheBadge](http://ForTheBadge.com) 
+* [Badges 4 README.md Profile](https://github.com/alexandresanlim/Badges4-README.md-Profile)
 
 
 ---

@@ -3,7 +3,7 @@ import time
 from asyncio import tasks
 import asyncio, requests
 from concurrent.futures import ThreadPoolExecutor
-from requests.sessions import session
+from requests.sessions import Session, session
 
 # Local library imports
 from core.data import  get_world, save_world
@@ -22,7 +22,12 @@ iata_decode = iata()
 
 states = get_world()
 
-async def get_data(places_to_fetch: list, states):
+async def get_data_iata(places_to_fetch: list, states):
+    ''' This asyncronous func handles the multiple requests called by `Forecast.call_coordinates()`
+     - Args:
+        - places_to_fetch (`list`): A `list` containing IATA codes for the function to retrieve its Weather Forecast.
+        - states: A python `dict` that contains the cache. 
+    '''
     with ThreadPoolExecutor(max_workers=10) as executor:
         with requests.Session() as session:
             loop = asyncio.get_event_loop()
@@ -38,6 +43,11 @@ async def get_data(places_to_fetch: list, states):
                 pass
 
 async def get_data_place(places_to_fetch: list, states):
+    ''' This asyncronous func handles the multiple requests called by `Forecast.call_place()`
+     - Args:
+        - places_to_fetch (`list`): A `list` containing city names for the function to retrieve its Weather Forecast.
+        - states: A python `dict` that contains the cache. 
+    '''
     with ThreadPoolExecutor(max_workers=10) as executor:
         with requests.Session() as session:
             loop = asyncio.get_event_loop()
@@ -57,35 +67,26 @@ def main():
     d1_list = d1.fetch()
     d1_coords = d1_list[:20:-1]
 
-    #d2 = data_2('./resources/dataset2.csv')
-    #d2_list = d2.fetch()
-    #d2_coords = []
-    #call = d2_list[:50]
-    #print(call)
-
-    #d2_coords = d2.fetch_coordinates()
-    #print(d2_coords)
+    d2 = data_2('./resources/dataset2.csv')
+    d2_list = d2.fetch()
+    call = d2_list[200:210]
     
-
-    #for iata in d1_list:
-    #    d1_coords.append(iata)
-    
-    #print(d1_list)
-#
-#
+   
     loop = asyncio.get_event_loop()
-    future = asyncio.ensure_future(get_data(d1_coords, states))
+    future = asyncio.ensure_future(get_data_iata(d1_coords, states))
     loop.run_until_complete(future)
-#
+
     #save_world(states)
     
-    #loop = asyncio.get_event_loop()
-    #future = asyncio.ensure_future(get_data_place(call, states))
-    #loop.run_until_complete(future)
+    loop = asyncio.get_event_loop()
+    future = asyncio.ensure_future(get_data_place(call, states))
+    loop.run_until_complete(future)
     
     save_world(states)
 
+    
 
-main()
+if __name__ == '__main__':
+    main()
 
 print('--- %s seconds ---'% (time.time() - start_time))
