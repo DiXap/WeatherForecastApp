@@ -1,19 +1,13 @@
-import asyncio
-import unittest, json, time
-
-from numpy.lib.function_base import place
-from core.info_processor import D1_Handler
-from core.info_processor import D2_Handler
-
+import  time
 from requests.sessions import Session
 
-from core.data import get_world
+from core.info_processor import D1_Handler
+from core.info_processor import D2_Handler
 from core.forecast import Forecast, access, get_full_forecast
 import core.forecast 
 from core.airports import IATA_handler as iata
 
-
-API = '1192a5270a138f03ee3e5add35415f3e'
+API = 'ENTER_YOUR_API_KEY'
 
 aproved = 0
 total = 7

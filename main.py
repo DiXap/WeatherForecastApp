@@ -14,7 +14,7 @@ from core.airports import IATA_handler as iata
 
 start_time = time.time()
 
-API = '1192a5270a138f03ee3e5add35415f3e'
+API = 'ENTER_YOUR_API_KEY'
 
 f = Forecast(API)
 
@@ -84,7 +84,7 @@ def main():
     
     save_world(states)
 
-    
+
 
 if __name__ == '__main__':
     main()
