@@ -84,6 +84,8 @@ def get_todays_forecast(place):
     raw = None
     try:
         raw = access(place, dir='./Data/set2')
+        if raw == None:
+            return
     except:
         return
     weather = raw['weather'][0]['main'] 
