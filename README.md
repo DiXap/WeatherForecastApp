@@ -20,7 +20,7 @@
 
 
 # About the Project
-Basically this project retrieves weather forecast data from an [OpenWeather](https://openweathermap.org/) API request. For now it only reads data from `.csv` files containing IATA codes or cities and display its weather forecast information on a simple-human-comprehensible terminal app  
+Basically this project retrieves weather forecast data from an [OpenWeather](https://openweathermap.org/) API request. For now it only reads data from `.csv` files containing IATA codes or cities and display their weather forecast information on a simple-human-comprehensible terminal app  
 Currently working on an GUI so you can search places and, overall, have a prettier data visualization.
 
 # Getting Started
@@ -66,7 +66,7 @@ API = 'ENTER_YOUR_API_KEY'
 
 # Usage
 As mentioned before, the app only reads csv files, although you can modify the functions in `main.py` in order to request for a specific location forecast.  
-Don't delete `Data`/ `resources` directories or its child directories for they're used in the main excecutoin of the app.
+Don't delete `Data`/ `resources` directories or its child directories for they're used in the main excecution of the app.
 Once you're ready, whether you modify something or not, go to your terminal and in the main directory of the project run the following:
 ```
 python main.py
@@ -117,7 +117,7 @@ If you want to contribute to this project please read the following steps. Any f
 
 ## Open issues
 You can open an issue anytime you want.  
-Refer to the section [open issues](https://github.com/DiXap/WeatherForecastApp/issues) for a list of known issues.
+Refer to the section [open issues](https://github.com/DiXap/WeatherForecastApp/issues) for a list of known ones.
 
 # Contact
 Diego J. Padilla  
