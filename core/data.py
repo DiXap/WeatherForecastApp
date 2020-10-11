@@ -1,19 +1,10 @@
 import json
 
 
-def get_data(city: object):
-    """
-    Obtenemos la informacion de un serializable JSON
-    """
-    data = {}
-    
-    with open('./Data/' + city.name + '.json') as target:
-        data = json.load(target)
-    return data
-
-
 def get_world() -> dict:
-    """ Obtiene informacion del contenido de la base de datos
+    """ Obtains iformation from the local cache
+    - Returns:
+      - `dict`: with all cache info
     """
     data = {}
     try:
@@ -25,15 +16,19 @@ def get_world() -> dict:
     return data
 
 
-def save_world(data: dict): #TODO Deprecar
+def save_world(data: dict):
+    ''' Saves current data into the cache as `json` file
+    - Args:
+      - data (`dict`): data to be stored
+    '''
     world = get_world()
     world.update(data)
     with open('./Data/World.json', 'w', encoding='utf-8') as outfile:
         json.dump(world, outfile, indent=2)
 
 
-def create_world(): # TODO Testeo. Ver si no rompe codigo
-    """ Sobre-escribe el Diccionario donde se almacenan los State
+def create_world():
+    """ Creates a new cache
     """
     world = {}
     with open('./Data/World.json', 'w', encoding='utf-8') as outfile:

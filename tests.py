@@ -1,4 +1,5 @@
 import  time
+import requests
 from requests.sessions import Session
 
 from core.info_processor import D1_Handler
@@ -15,6 +16,13 @@ total = 7
 start_time = time.time()
 
 def handle_non_existing_place():
+    ''' Function to test if error handling is working for `Forecast.call_places()`.
+    - It's expected for `Forecast.call_places()` to return `None` if something goes wrong within its excecution, in this case we're requesting
+    forecast information from an empty string i.e. an nonexistent place.
+     - Returns:
+       - `1` : If the error is handled as expected
+       - `0` : In other case
+    '''
     f = Forecast(API)
     sess = Session()
     states = {}
@@ -25,6 +33,13 @@ def handle_non_existing_place():
 
 
 def handle_bad_api_key():
+    ''' Function to test if error handling is working for all `Forecast` function that requires an API Key to make a request.
+    - It's expected for `Forecast` functions to return `None` if `requests.status_code` differs from `200` i.e. it couldn't complete the request 
+    because we're requesting forecast information with an invalid or nonexistent URL. In this case we're using a bad API Key.
+     - Returns:
+       - `1` : If the error is handled as expected
+       - `0` : In other case
+    '''
     f = Forecast(' ')
     sess = Session()
     states = {}
@@ -34,18 +49,37 @@ def handle_bad_api_key():
     return 0
 
 def handle_non_existing_local_data():
+    ''' Function to test if error handling is working for `core.forecast` function `access()`.
+    - It's expected for `access()` to return `None` if it couldn't reach target file. In this case we're tryng to `access()` a nonexistent file.
+     - Returns:
+       - `1` : If the error is handled as expected
+       - `0` : In other case
+    '''
     response = access(' ')
     if response == None:
         return 1
     return 0
     
 def handling_non_existin_dir():
+    ''' Function to test if error handling is working for `core.forecast` function `access()`.
+    - It's expected for `access()` to return `None` if it couldn't reach target file. In this case we're tryng to `access()` a nonexistent file inside
+     a nonexistent directory.
+     - Returns:
+       - `1` : If the error is handled as expected
+       - `0` : In other case
+    '''
     response = access('Tokyo.json', dir='unexpected')
     if response == None:
         return 1
     return 0
 
 def handle_bad_iata_code():
+    ''' Function to test if error handling is working for `IATA_Handler` functions.
+    - It's expected for both of its methods `coordinates()` and `place()` to return a default value if they couldn't access the requested `dict` key. 
+     - Returns:
+       - `1` : If the error is handled as expected
+       - `0` : In other case
+    '''
     ia = iata()
     coords = ia.coordinates('')
     place = ia.place(' ')
@@ -54,12 +88,24 @@ def handle_bad_iata_code():
     return 0
 
 def fetch_csv_data():
+    ''' Function to test if error handling is working for `D1_Handler.__init__()`.
+    - It's expected to initaliza a `D1_Handler` `object` with default value if it couldn't reach the specified `.csv` file. 
+     - Returns:
+       - `1` : If the error is handled as expected
+       - `0` : In other case
+    '''
     d = D1_Handler(' ')
     if d != None:
         return 1
     return 0
 
 def fetch_csv_data2():
+    ''' Function to test if error handling is working for `D2_Handler.__init__()`.
+    - It's expected to initaliza a `D2_Handler` `object` with default value if it couldn't reach the specified `.csv` file. 
+     - Returns:
+       - `1` : If the error is handled as expected
+       - `0` : In other case
+    '''
     d = D2_Handler(' ')
     if d != None:
         return 1
@@ -67,7 +113,13 @@ def fetch_csv_data2():
 
 
 def everythings_wrong():
-    f = Forecast(API)
+    ''' Just a small test to check if everything behaves when more than one thing fails at the same time.
+    Here we try to request forecast information of a nonexistent place from `IATA_Handler` with a bad API Key.
+    - Returns:
+      - `1` : If the error is handled as expected
+      - `0` : If it's not
+    '''
+    f = Forecast(' ')
     sess = Session()
     states = {}
     ia = iata()
@@ -87,7 +139,7 @@ if __name__ == '__main__':
     aproved += fetch_csv_data2()
     print('Requesting a non existant place ...')
     aproved += handle_non_existing_place()
-    print('Getting a bad API Key ...')
+    print('When you get a bad API Key ...')
     aproved += handle_bad_api_key()
     print('Accessing a non existing file ...')
     aproved += handle_non_existing_local_data()

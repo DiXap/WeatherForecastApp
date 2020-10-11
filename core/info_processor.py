@@ -117,7 +117,7 @@ class D2_Handler():
             self.__set = set()
             self._iata_decode = iata()
         except:
-            self.__data = None#pnd.read_csv('./resources/dataset2.csv')
+            self.__data = None
         
     def __fetch_arrivals(self):
         '''Fetches the arrivals column from a `.csv` file  

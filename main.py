@@ -89,4 +89,4 @@ def main():
 if __name__ == '__main__':
     main()
 
-print('--- %s seconds ---'% (time.time() - start_time))
+print('--- Completed in %s seconds ---'% (round(time.time() - start_time, 3)))

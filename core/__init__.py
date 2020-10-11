@@ -1,1 +1,1 @@
-# Do not delete this file for it's used to initialie this package
+# Do not delete this file for it's used to initialize this package
