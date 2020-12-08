@@ -47,22 +47,22 @@ python --version
 ## Installation
 1. Get a free `OpenWeather` API Key at https://openweathermap.org/appid
 2. Clone the repo
-```shell
-git clone https://github.com/DiXap/WeatherForecastApp.git
-```
+    ```shell
+    git clone https://github.com/DiXap/WeatherForecastApp.git
+    ```
 3. Verify or install Python packages
   For all the packages listed bwlow, run the following command where `<pkg>` is the name of the package.
-  ```shell
-  pip install <pkg>
-  ```
-  * `requests`
-  * `unidecode`
-  * `pandas`
+      ```shell
+      pip install <pkg>
+      ```
+    * `requests`
+    * `unidecode`
+    * `pandas`
 
 4. Enter your API Key in `main.py`
-```python
-API = 'ENTER_YOUR_API_KEY'
-```
+    ```python
+    API = 'ENTER_YOUR_API_KEY'
+    ```
 
 # Usage
 As mentioned before, the app only reads csv files, although you can modify the functions in `main.py` in order to request for a specific location forecast.  
@@ -74,10 +74,64 @@ python main.py
 > `python3` in some distros
 
 It should output something like:  
-![Cities](./resources/Places.png "Looking for a place")  
+<!-- ![Cities](./resources/Places.png "Looking for a place") -->
+```
+Aviá Terai
+Weather: Clouds as overcast clouds
+Current temp: 19.28°C
+        but feels like: 18.73°C
+        Max temp: 19.28°C   Min temp: 19.28°C
+Humidity: 76%   Pressure: 1011Pa
+
+Badung
+Weather: Rain as light rain
+Current temp: 30°C
+        but feels like: 32.34°C
+        Max temp: 30°C   Min temp: 30°C
+Humidity: 74%   Pressure: 1009Pa
+
+Baidoa
+Weather: Clouds as overcast clouds
+Current temp: 25.88°C
+        but feels like: 26.68°C
+        Max temp: 25.88°C   Min temp: 25.88°C
+Humidity: 74%   Pressure: 1013Pa
+
+--- 0.6180081367492676 seconds ---
+```
 > If you searched for a place  
 
-![Airports](./resources/IATA.png "IATA codes also supported!")  
+<!-- ![Airports](./resources/IATA.png "IATA codes also supported!") -->
+```
+George Bush Intercontinental Huston Airport
+ Houston, United States
+Weather: Clouds as overcast clouds
+Current temp: 25.99°C
+        but feels like: 23.11°C
+UVI: 7.83
+Humidity: 69%   Pressure: 1004Pa
+
+
+Bahías de Huatulco International Airport
+ Huatulco, Mexico
+Weather: Clouds as broken clouds
+Current temp: 28.94°C
+        but feels like: 33.16°C
+UVI: 11.83
+Humidity: 74%   Pressure: 1009Pa
+
+
+John F Kennedy International Airport
+ New York, United States
+Weather: Clouds as few clouds
+Current temp: 18.31°C
+        but feels like: 15.8°C
+UVI: 4.43
+Humidity: 63%   Pressure: 1020Pa
+
+
+--- 0.1079430580191602 seconds ---
+```
 > If you searched an IATA code
 
 Since `OpeWeather` only admits limitted API calls per minute, the main program is set to make under 60 requests so it doesn't get yourself in trouble.  
@@ -107,12 +161,17 @@ Feel free to play around with them.
 If you want to contribute to this project please read the following steps. Any feedback or contributions are greatly appreciated.
   1. Fork the project
   2. Create your branch  
-    ```git checkout -b ideas/MyFeature```  
-
+      ```shell
+      git checkout -b ideas/MyFeature
+      ```
   3. Commint the changes  
-    ```git commit -m "Some awesome ideas" ```  
+      ```shell
+      git commit -m "Some awesome ideas" 
+      ```  
   4. Push  
-    ``` git push origin ideas/MyFeature```  
+      ```shell
+      git push origin ideas/MyFeature
+      ```  
   5. Open a pull request   
 
 ## Open issues
