@@ -29,13 +29,13 @@ Since this app is all made with `Python` you're going to need some python-librar
 
 ## Prerequisites
 * First check that your current `Python` version is `Python 3.6` or above, by running the following command on your terminal:
-```
+```shell
 python --version
 ```
 > `Python 3.8+` is recommended 
 
   Note that in some linux distros you'll need to run it as:  
-  ```
+  ```shell
   python3 --version
   ```
 
@@ -47,12 +47,12 @@ python --version
 ## Installation
 1. Get a free `OpenWeather` API Key at https://openweathermap.org/appid
 2. Clone the repo
-```
+```shell
 git clone https://github.com/DiXap/WeatherForecastApp.git
 ```
 3. Verify or install Python packages
   For all the packages listed bwlow, run the following command where `<pkg>` is the name of the package.
-  ```
+  ```shell
   pip install <pkg>
   ```
   * `requests`
@@ -60,7 +60,7 @@ git clone https://github.com/DiXap/WeatherForecastApp.git
   * `pandas`
 
 4. Enter your API Key in `main.py`
-```
+```python
 API = 'ENTER_YOUR_API_KEY'
 ```
 
@@ -68,7 +68,7 @@ API = 'ENTER_YOUR_API_KEY'
 As mentioned before, the app only reads csv files, although you can modify the functions in `main.py` in order to request for a specific location forecast.  
 Don't delete `Data`/ `resources` directories or its child directories for they're used in the main excecution of the app.
 Once you're ready, whether you modify something or not, go to your terminal and in the main directory of the project run the following:
-```
+```shell
 python main.py
 ```
 > `python3` in some distros
@@ -82,14 +82,14 @@ It should output something like:
 
 Since `OpeWeather` only admits limitted API calls per minute, the main program is set to make under 60 requests so it doesn't get yourself in trouble.  
 If you want to remove this limit go to `main.py` and change the following:
-```
+```python
   future = asyncio.ensure_future(get_data_iata(d1_list, states))
 
   future = asyncio.ensure_future(get_data_place(d2_list, states))
 ```
 By doing this the program will fetch data for all the places contained in the `.csv` files.  
 Alternatively, you can fiddle around with the list slices:
-```
+```python
   d1_coords = d1_list[:20:-1]
 
   call = d2_list[200:210]
@@ -97,7 +97,7 @@ Alternatively, you can fiddle around with the list slices:
 
 ## Tests
 In order to get the tests running you'll need to enter your API Key in `tests.py`:
-```
+```python
 API = 'ENTER_YOUR_API_KEY'
 ```
 These test cases were coded to demostrate functions' error handling.
