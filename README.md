@@ -20,7 +20,7 @@
 
 
 # About the Project
-Basically this project retrieves weather forecast data from an [OpenWeather](https://openweathermap.org/) API request. For now it only reads data from `.csv` files containing IATA codes or cities and display their weather forecast information on a simple-human-comprehensible terminal app  
+This project retrieves weather forecast data from an [OpenWeather](https://openweathermap.org/) API request. For now it only reads data from `.csv` files containing IATA codes or cities and display their weather forecast information on a simple-human-comprehensible terminal app  
 Currently working on an GUI so you can search places and, overall, have a prettier data visualization.
 
 # Getting Started
